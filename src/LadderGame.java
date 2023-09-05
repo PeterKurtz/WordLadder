@@ -4,17 +4,49 @@ import java.util.ArrayList;
 
 public class LadderGame {
 
+    public ArrayList<ArrayList<String>> orderedWords = new ArrayList<>();
+
     public LadderGame(String dictionaryFile) {
         readDictionary(dictionaryFile);
     }
 
     public void play(String start, String end) {
         // TODO: Write some good stuff here
-        //System.out.println("Test");
+
+    }
+
+    public boolean diff(String startWord, String dictWord, int lenOfWord) {
+        boolean oneAwayBool;
+        int diffNum = 0;
+
+        for (int i=0; i < lenOfWord; i++) {
+            if (startWord.charAt(i) == dictWord.charAt(i)) {
+                diffNum += 1;
+            }
+        }
+
+        if (diffNum == lenOfWord - 1) {
+            oneAwayBool = true;
+        }
+        else {
+            oneAwayBool = false;
+        }
+
+        return oneAwayBool;
     }
 
     public ArrayList<String> oneAway(String word, boolean withRemoval) {
         ArrayList<String> words = new ArrayList<>();
+        int lenOfWord = word.length();
+        int numOfWords = orderedWords.get(lenOfWord).size();
+
+        for (int i = 0; i < numOfWords; i++) {
+            String wordInDict = orderedWords.get(lenOfWord).get(i);
+            boolean isOneAway = diff(word, orderedWords.get(lenOfWord).get(i), lenOfWord);
+            if (isOneAway) {
+                words.add(wordInDict);
+            }
+        }
 
         // TODO: Write some good stuff here
 
@@ -23,6 +55,9 @@ public class LadderGame {
 
     public void listWords(int length, int howMany) {
         // TODO: Write some good stuff here
+        for (int i = 0; i < howMany; i++) {
+            System.out.println(orderedWords.get(length).get(i));
+        }
     }
 
     /*
@@ -32,7 +67,6 @@ public class LadderGame {
         File file = new File(dictionaryFile);
         ArrayList<String> allWords = new ArrayList<>();
 
-        //
         // Track the longest word, because that tells us how big to make the array.
         int longestWord = 0;
         try (Scanner input = new Scanner(file)) {
@@ -44,28 +78,14 @@ public class LadderGame {
                 longestWord = Math.max(longestWord, word.length());
             }
 
-            ArrayList<ArrayList<String>> orderedWords = new ArrayList<>(longestWord);
-
-            for (int i = 0; i < longestWord; i++){
+            for (int i = 0; i <= longestWord; i++){
                 orderedWords.add(new ArrayList());
             }
 
             for (String word: allWords){
                 int lenOfWord = word.length();
-                orderedWords.get(lenOfWord - 1).add(word);
+                orderedWords.get(lenOfWord).add(word);
             }
-
-            //Outputs aa
-            System.out.println(orderedWords.get(1).get(0));
-
-            //length of first word
-            //System.out.println(allWords.get(0).length());
-            //size of sizeOfAllWords, gets last word
-            //int sizeOfAllWords = allWords.size();
-            //System.out.println(sizeOfAllWords);
-            //System.out.println(allWords.get(sizeOfAllWords - 1));
-
-            // TODO: You need to do something here to organize the words into groups/arrays of words with the same size
 
         }
         catch (java.io.IOException ex) {
