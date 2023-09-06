@@ -44,6 +44,13 @@ public class LadderGame {
             }
         }
 
+        if (withRemoval) {
+            remOrderedWords.get(lenOfWord).remove(word);
+            for (String removeWord : words) {
+                remOrderedWords.get(lenOfWord).remove(removeWord);
+            }
+        }
+
         return words;
     }
 
@@ -54,20 +61,13 @@ public class LadderGame {
         }
     }
 
-    private ArrayList<ArrayList<String>> resetRemOrderedWords (ArrayList<ArrayList<String>> orderedWordsM, int longestWordM) {
-        ArrayList<ArrayList<String>> newRemOrderedWords = new ArrayList<>();
+    private void resetRemOrderedWords () {
 
-        for (int i = 0; i <= longestWordM; i++){
-            newRemOrderedWords.add(new ArrayList());
-        }
-
-        for (int i=0; i < orderedWordsM.size(); i++) {
-            for (String word : orderedWordsM.get(i)) {
-                newRemOrderedWords.get(i).add(word);
+        for (int i=0; i < orderedWords.size(); i++) {
+            for (String word : orderedWords.get(i)) {
+                remOrderedWords.get(i).add(word);
             }
         }
-
-        return newRemOrderedWords;
     }
 
     /*
@@ -97,11 +97,11 @@ public class LadderGame {
                 orderedWords.get(lenOfWord).add(word);
             }
 
-            remOrderedWords = resetRemOrderedWords(orderedWords, longestWord);
+            for (int i = 0; i <= longestWord; i++){
+                remOrderedWords.add(new ArrayList());
+            }
 
-            //System.out.println(orderedWords.get(5).get(100)); Returns the same as below
-            //System.out.println(remOrderedWords.get(5).get(100));
-
+            resetRemOrderedWords();
 
         }
         catch (java.io.IOException ex) {
