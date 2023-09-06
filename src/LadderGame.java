@@ -34,11 +34,11 @@ public class LadderGame {
     public ArrayList<String> oneAway(String word, boolean withRemoval) {
         ArrayList<String> words = new ArrayList<>();
         int lenOfWord = word.length();
-        int numOfWords = orderedWords.get(lenOfWord).size();
+        int numOfWords = remOrderedWords.get(lenOfWord).size();
 
         for (int i = 0; i < numOfWords; i++) {
-            String wordInDict = orderedWords.get(lenOfWord).get(i);
-            boolean isOneAway = diff(word, orderedWords.get(lenOfWord).get(i), lenOfWord);
+            String wordInDict = remOrderedWords.get(lenOfWord).get(i);
+            boolean isOneAway = diff(word, remOrderedWords.get(lenOfWord).get(i), lenOfWord);
             if (isOneAway) {
                 words.add(wordInDict);
             }
