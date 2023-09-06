@@ -22,6 +22,7 @@ public class WordLadders {
         g.play("biff", "axis");
         g.play("fungi", "among");
         g.play("kiss", "woof");
+
     }
 }
 

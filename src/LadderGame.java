@@ -12,7 +12,22 @@ public class LadderGame {
     }
 
     public void play(String start, String end) {
-        // TODO: Write some good stuff here
+
+        System.out.println(start + " " + end);
+
+        int lenOfWord = start.length();
+
+        if (start.length() != end.length()){
+            System.out.println("The words are not the same length");
+            return;
+        }
+
+        if (!remOrderedWords.get(lenOfWord).contains(start) || !remOrderedWords.get(lenOfWord).contains(end)) {
+            System.out.println("The start word and or end word is not in the dictionary");
+            return;
+        }
+
+        System.out.println("These words are valid inputs");//For testing
 
     }
 

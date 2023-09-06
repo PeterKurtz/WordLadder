@@ -22,4 +22,10 @@ public class extra {
      }
      System.out.println(g.remOrderedWords.get(2));
      */
+
+    //System.out.println(g.oneAway("floccinaucinihilipilification", false)); returns and empty list.
+
+    //g.play("aa", "tot"); exits the program.
+    //        g.play("aa", "run"); words in the program.
+    //        g.play("aa", "uu");
 }
