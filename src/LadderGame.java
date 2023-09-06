@@ -15,7 +15,7 @@ public class LadderGame {
 
         resetRemOrderedWords();
 
-        System.out.println(start + " " + end);
+        System.out.println(start + " " + end); // Don't forget to remove. Only for testing.
 
         int lenOfWord = start.length();
 
@@ -30,6 +30,8 @@ public class LadderGame {
         }
 
         Queue wordInfoQueue = new Queue();
+        WordInfo word = new WordInfo(start, 0);
+        System.out.println(word.getMoves());
 
     }
 
