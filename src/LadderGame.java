@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class LadderGame {
 
     public ArrayList<ArrayList<String>> orderedWords = new ArrayList<>();
+    public ArrayList<ArrayList<String>> remOrderedWords = new ArrayList<>();
 
     public LadderGame(String dictionaryFile) {
         readDictionary(dictionaryFile);
@@ -15,7 +16,7 @@ public class LadderGame {
 
     }
 
-    public boolean diff(String startWord, String dictWord, int lenOfWord) {
+    private boolean diff(String startWord, String dictWord, int lenOfWord) {
         boolean oneAwayBool;
         int diffNum = 0;
 
@@ -25,12 +26,7 @@ public class LadderGame {
             }
         }
 
-        if (diffNum == lenOfWord - 1) {
-            oneAwayBool = true;
-        }
-        else {
-            oneAwayBool = false;
-        }
+        oneAwayBool = diffNum == lenOfWord - 1;
 
         return oneAwayBool;
     }
@@ -48,8 +44,6 @@ public class LadderGame {
             }
         }
 
-        // TODO: Write some good stuff here
-
         return words;
     }
 
@@ -58,6 +52,22 @@ public class LadderGame {
         for (int i = 0; i < howMany; i++) {
             System.out.println(orderedWords.get(length).get(i));
         }
+    }
+
+    private ArrayList<ArrayList<String>> resetRemOrderedWords (ArrayList<ArrayList<String>> orderedWordsM, int longestWordM) {
+        ArrayList<ArrayList<String>> newRemOrderedWords = new ArrayList<>();
+
+        for (int i = 0; i <= longestWordM; i++){
+            newRemOrderedWords.add(new ArrayList());
+        }
+
+        for (int i=0; i < orderedWordsM.size(); i++) {
+            for (String word : orderedWordsM.get(i)) {
+                newRemOrderedWords.get(i).add(word);
+            }
+        }
+
+        return newRemOrderedWords;
     }
 
     /*
@@ -86,6 +96,12 @@ public class LadderGame {
                 int lenOfWord = word.length();
                 orderedWords.get(lenOfWord).add(word);
             }
+
+            remOrderedWords = resetRemOrderedWords(orderedWords, longestWord);
+
+            //System.out.println(orderedWords.get(5).get(100)); Returns the same as below
+            //System.out.println(remOrderedWords.get(5).get(100));
+
 
         }
         catch (java.io.IOException ex) {
