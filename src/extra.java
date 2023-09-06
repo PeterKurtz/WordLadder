@@ -28,4 +28,5 @@ public class extra {
     //g.play("aa", "tot"); exits the program.
     //        g.play("aa", "run"); words in the program.
     //        g.play("aa", "uu");
+    //System.out.println(wordInfoQueue.isEmpty()); tested and works in LadderGame
 }

@@ -4,14 +4,16 @@ import java.util.ArrayList;
 
 public class LadderGame {
 
-    public ArrayList<ArrayList<String>> orderedWords = new ArrayList<>();
-    public ArrayList<ArrayList<String>> remOrderedWords = new ArrayList<>();
+    private ArrayList<ArrayList<String>> orderedWords = new ArrayList<>();
+    private ArrayList<ArrayList<String>> remOrderedWords = new ArrayList<>();
 
     public LadderGame(String dictionaryFile) {
         readDictionary(dictionaryFile);
     }
 
     public void play(String start, String end) {
+
+        resetRemOrderedWords();
 
         System.out.println(start + " " + end);
 
@@ -27,7 +29,7 @@ public class LadderGame {
             return;
         }
 
-        System.out.println("These words are valid inputs");//For testing
+        Queue wordInfoQueue = new Queue();
 
     }
 
