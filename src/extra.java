@@ -45,4 +45,16 @@ public class extra {
         WordInfo endingObject = new WordInfo(end, 0);
         wordInfoQueue.enqueue(wordObject);
         wordInfoQueue.enqueue(endingObject);*/
+
+    //System.out.println(oneAway(wordObject.getWord(), false)); this works!
+
+    /*
+    This works!!!
+    System.out.println(wordInfoQueue.isEmpty());
+        wordInfoQueue.enqueue(wordObject);
+        System.out.println(wordInfoQueue.isEmpty());*/
+
+    /*This works!!!        wordInfoQueue.enqueue(startObject);
+        wordInfoQueue.enqueue(endObject);
+        wordInfoQueue.dequeue(startObject);*/
 }

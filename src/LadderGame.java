@@ -30,9 +30,8 @@ public class LadderGame {
         resetRemOrderedWords(lenOfWord);
 
         Queue wordInfoQueue = new Queue();
-        WordInfo wordObject = new WordInfo(start, 0);
+        WordInfo startObject = new WordInfo(start, 0);
 
-        System.out.println(oneAway(wordObject.getWord(), false));
     }
 
     private boolean diff(String startWord, String dictWord, int lenOfWord) {

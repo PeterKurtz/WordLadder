@@ -37,14 +37,30 @@ public class Queue <E>{
     }
 
     public void dequeue(E value) {
-        // TODO
+        QueueNode<E> node = head.next;
+        QueueNode<E> previous = head;
+
+        while (node.next != null) {
+            previous = node;
+            node = node.next;
+        }
+
+        previous.next = node.next;
+        tail = previous;
+
+        this.enqueuedSize--;
     }
 
     public boolean isEmpty() {
         // TODO
         boolean isEmpty;
 
-        isEmpty = true;//Testing
+        if (tail == head) {
+            isEmpty = true;
+        }
+        else{
+            isEmpty = false;
+        }
 
         return isEmpty;
     }
