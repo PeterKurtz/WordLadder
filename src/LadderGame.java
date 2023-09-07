@@ -39,13 +39,15 @@ public class LadderGame {
 
         wordInfoQueue.enqueue(startObject);
         wordInfoQueue.enqueue(endObject);
+        wordInfoQueue.enqueue(testingObject);
 
         WordInfo firstInQueue = (WordInfo) wordInfoQueue.getFirstValue();
         System.out.println(firstInQueue);
 
-        //wordInfoQueue.dequeue();
-        //System.out.println(firstInQueue);
+        wordInfoQueue.dequeue();
 
+        firstInQueue = (WordInfo) wordInfoQueue.getFirstValue();
+        System.out.println(firstInQueue);
 
     }
 

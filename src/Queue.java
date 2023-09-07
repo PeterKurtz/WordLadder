@@ -38,9 +38,7 @@ public class Queue <E>{
 
     public void dequeue() {
 
-        head = head.next;
         head.next = head.next.next;
-
         this.enqueuedSize--;
     }
 
