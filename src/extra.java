@@ -29,4 +29,6 @@ public class extra {
     //        g.play("aa", "run"); words in the program.
     //        g.play("aa", "uu");
     //System.out.println(wordInfoQueue.isEmpty()); tested and works in LadderGame
+
+    //System.out.println(word.getMoves() + " " + word.getWord() + " " + word.getHistory()); gets moves word and history
 }

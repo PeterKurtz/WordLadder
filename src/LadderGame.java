@@ -5,15 +5,13 @@ import java.util.ArrayList;
 public class LadderGame {
 
     private ArrayList<ArrayList<String>> orderedWords = new ArrayList<>();
-    private ArrayList<ArrayList<String>> remOrderedWords = new ArrayList<>();
+    private ArrayList<String> remOrderedWords = new ArrayList<>();
 
     public LadderGame(String dictionaryFile) {
         readDictionary(dictionaryFile);
     }
 
     public void play(String start, String end) {
-
-        resetRemOrderedWords();
 
         System.out.println(start + " " + end); // Don't forget to remove. Only for testing.
 
@@ -24,15 +22,16 @@ public class LadderGame {
             return;
         }
 
-        if (!remOrderedWords.get(lenOfWord).contains(start) || !remOrderedWords.get(lenOfWord).contains(end)) {
+        if (!remOrderedWords.contains(start) || !remOrderedWords.contains(end)) {
             System.out.println("The start word and or end word is not in the dictionary");
             return;
         }
 
-        Queue wordInfoQueue = new Queue();
-        WordInfo word = new WordInfo(start, 0);
-        System.out.println(word.getMoves());
+        resetRemOrderedWords(lenOfWord);
 
+        Queue wordInfoQueue = new Queue();
+        WordInfo wordObject = new WordInfo(start, 0);
+        System.out.println(oneAway(wordObject.getWord(), false));
     }
 
     private boolean diff(String startWord, String dictWord, int lenOfWord) {
@@ -53,20 +52,23 @@ public class LadderGame {
     public ArrayList<String> oneAway(String word, boolean withRemoval) {
         ArrayList<String> words = new ArrayList<>();
         int lenOfWord = word.length();
-        int numOfWords = remOrderedWords.get(lenOfWord).size();
+
+        resetRemOrderedWords(lenOfWord);
+
+        int numOfWords = remOrderedWords.size();
 
         for (int i = 0; i < numOfWords; i++) {
-            String wordInDict = remOrderedWords.get(lenOfWord).get(i);
-            boolean isOneAway = diff(word, remOrderedWords.get(lenOfWord).get(i), lenOfWord);
+            String wordInDict = remOrderedWords.get(i);
+            boolean isOneAway = diff(word, remOrderedWords.get(i), lenOfWord);
             if (isOneAway) {
                 words.add(wordInDict);
             }
         }
 
         if (withRemoval) {
-            remOrderedWords.get(lenOfWord).remove(word);
+            remOrderedWords.remove(word);
             for (String removeWord : words) {
-                remOrderedWords.get(lenOfWord).remove(removeWord);
+                remOrderedWords.remove(removeWord);
             }
         }
 
@@ -80,13 +82,11 @@ public class LadderGame {
         }
     }
 
-    private void resetRemOrderedWords () {
+    private void resetRemOrderedWords (int wordLength) {
 
-        for (int i=0; i < orderedWords.size(); i++) {
-            for (String word : orderedWords.get(i)) {
-                remOrderedWords.get(i).add(word);
-            }
-        }
+        remOrderedWords.clear();
+
+        remOrderedWords.addAll(orderedWords.get(wordLength));
     }
 
     /*
@@ -115,12 +115,6 @@ public class LadderGame {
                 int lenOfWord = word.length();
                 orderedWords.get(lenOfWord).add(word);
             }
-
-            for (int i = 0; i <= longestWord; i++){
-                remOrderedWords.add(new ArrayList());
-            }
-
-            resetRemOrderedWords();
 
         }
         catch (java.io.IOException ex) {
