@@ -36,17 +36,10 @@ public class Queue <E>{
 
     }
 
-    public void dequeue(E value) {
-        QueueNode<E> node = head.next;
-        QueueNode<E> previous = head;
+    public void dequeue() {
 
-        while (node.next != null) {
-            previous = node;
-            node = node.next;
-        }
-
-        previous.next = node.next;
-        tail = previous;
+        head = head.next;
+        head.next = head.next.next;
 
         this.enqueuedSize--;
     }
@@ -63,6 +56,10 @@ public class Queue <E>{
         }
 
         return isEmpty;
+    }
+
+    public E getFirstValue() {
+        return head.next.value;
     }
 
 }

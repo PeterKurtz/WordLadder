@@ -32,6 +32,21 @@ public class LadderGame {
         Queue wordInfoQueue = new Queue();
         WordInfo startObject = new WordInfo(start, 0);
 
+        //For debugging
+        WordInfo endObject = new WordInfo(end, 0);
+
+        WordInfo testingObject = new WordInfo("Testing", 0);
+
+        wordInfoQueue.enqueue(startObject);
+        wordInfoQueue.enqueue(endObject);
+
+        WordInfo firstInQueue = (WordInfo) wordInfoQueue.getFirstValue();
+        System.out.println(firstInQueue);
+
+        //wordInfoQueue.dequeue();
+        //System.out.println(firstInQueue);
+
+
     }
 
     private boolean diff(String startWord, String dictWord, int lenOfWord) {
