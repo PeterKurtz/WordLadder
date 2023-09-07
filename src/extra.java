@@ -31,4 +31,18 @@ public class extra {
     //System.out.println(wordInfoQueue.isEmpty()); tested and works in LadderGame
 
     //System.out.println(word.getMoves() + " " + word.getWord() + " " + word.getHistory()); gets moves word and history
+
+    /*Testing Queue It works!*/
+        /*
+        Queue testingQueue = new Queue();
+        testingQueue.enqueue("Hello");
+        testingQueue.enqueue("World");
+        testingQueue.enqueue("!");
+        System.out.println("");*/
+
+    /*For Testing It Works!*/
+        /*
+        WordInfo endingObject = new WordInfo(end, 0);
+        wordInfoQueue.enqueue(wordObject);
+        wordInfoQueue.enqueue(endingObject);*/
 }

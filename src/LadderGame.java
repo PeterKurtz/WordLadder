@@ -31,6 +31,7 @@ public class LadderGame {
 
         Queue wordInfoQueue = new Queue();
         WordInfo wordObject = new WordInfo(start, 0);
+
         System.out.println(oneAway(wordObject.getWord(), false));
     }
 
@@ -76,16 +77,13 @@ public class LadderGame {
     }
 
     public void listWords(int length, int howMany) {
-        // TODO: Write some good stuff here
         for (int i = 0; i < howMany; i++) {
             System.out.println(orderedWords.get(length).get(i));
         }
     }
 
     private void resetRemOrderedWords (int wordLength) {
-
         remOrderedWords.clear();
-
         remOrderedWords.addAll(orderedWords.get(wordLength));
     }
 
