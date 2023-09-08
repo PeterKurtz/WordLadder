@@ -14,13 +14,7 @@ public class WordLadders {
         System.out.println();
 
         System.out.println("--- Word Ladders ---");
-
-        /*for debugging*/
-        g.play("oops", "wops");
-
         g.play("oops", "tots");
-
-        /* Remember to uncomment this!!!!
         g.play("ride", "ands");
         g.play("happily", "angrily");
         g.play("slow", "fast");
@@ -28,9 +22,6 @@ public class WordLadders {
         g.play("biff", "axis");
         g.play("fungi", "among");
         g.play("kiss", "woof");
-        */
-
     }
 }
 
-/*Test*/

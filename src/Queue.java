@@ -60,6 +60,15 @@ public class Queue <E>{
         return head.next.value;
     }
 
+    public boolean checkIfFinished() {
+        if (head.next == null) {
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
     public E getLastValue() {return tail.value;}
 
 }

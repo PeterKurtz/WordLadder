@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class LadderGame {
 
-    private ArrayList<ArrayList<String>> orderedWords = new ArrayList<>();
+    private final ArrayList<ArrayList<String>> orderedWords = new ArrayList<>();
     private ArrayList<String> remOrderedWords = new ArrayList<>();
 
     public LadderGame(String dictionaryFile) {
@@ -12,8 +12,6 @@ public class LadderGame {
     }
 
     public void play(String start, String end) {
-
-        System.out.println(start + " " + end); // Don't forget to remove. Only for testing.
 
         int lenOfWord = start.length();
 
@@ -38,14 +36,14 @@ public class LadderGame {
 
         WordInfo firstInQueue = (WordInfo) wordInfoQueue.getFirstValue();
 
-        while (firstInQueue != null) {
+        while (!wordInfoQueue.checkIfFinished()) {
             String word = firstInQueue.getWord();
             ArrayList<String> oneAwayWords = oneAway(word, true);
 
             for (String wordInArray:oneAwayWords) {
                 enqueueWord(wordInArray, wordInfoQueue, firstInQueue);
                 totalEnqueued += 1;
-                if(wordInArray.equals(end)) {
+                if (wordInArray.equals(end)) {
                     WordInfo endWordInfo = (WordInfo) wordInfoQueue.getLastValue();
                     System.out.println(start + " -> " + end + " : " + endWordInfo.getMoves() + " Moves [" + endWordInfo.getHistory() + "] total enqueues " + totalEnqueued);
                     return;
@@ -54,23 +52,19 @@ public class LadderGame {
 
             wordInfoQueue.dequeue();
 
+            if (wordInfoQueue.checkIfFinished() == false) {
+                firstInQueue = (WordInfo) wordInfoQueue.getFirstValue();
+            }
+            else{
+                System.out.println(start + " -> " + end + " : No ladder was found");
+            }
         }
-
     }
-
-    /*private boolean checkIfWinner(String wordInArray, String endWord) {
-        if (wordInArray == endWord) {
-            return true;
-        }
-        else {return false;}
-    }*/
 
     private void enqueueWord(String word, Queue queueObject, WordInfo wordInfoObject) {
         WordInfo addWord = new WordInfo(word, wordInfoObject.getMoves() + 1, wordInfoObject.getHistory() + " " + word);
         queueObject.enqueue(addWord);
-
     }
-
 
     private boolean diff(String startWord, String dictWord, int lenOfWord) {
         boolean oneAwayBool;
@@ -90,8 +84,6 @@ public class LadderGame {
     public ArrayList<String> oneAway(String word, boolean withRemoval) {
         ArrayList<String> words = new ArrayList<>();
         int lenOfWord = word.length();
-
-        resetRemOrderedWords(lenOfWord);
 
         int numOfWords = remOrderedWords.size();
 
