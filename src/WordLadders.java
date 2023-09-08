@@ -14,6 +14,10 @@ public class WordLadders {
         System.out.println();
 
         System.out.println("--- Word Ladders ---");
+
+        /*for debugging*/
+        g.play("oops", "wops");
+
         g.play("oops", "tots");
 
         /* Remember to uncomment this!!!!

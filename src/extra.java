@@ -57,4 +57,20 @@ public class extra {
     /*This works!!!        wordInfoQueue.enqueue(startObject);
         wordInfoQueue.enqueue(endObject);
         wordInfoQueue.dequeue(startObject);*/
+
+    /*        //For debugging WORKS!!!
+        WordInfo endObject = new WordInfo(end, 0);
+
+        WordInfo testingObject = new WordInfo("Testing", 0);
+
+        wordInfoQueue.enqueue(startObject);
+        wordInfoQueue.enqueue(endObject);
+        wordInfoQueue.enqueue(testingObject);
+                System.out.println(firstInQueue);
+
+        wordInfoQueue.dequeue();
+
+        firstInQueue = (WordInfo) wordInfoQueue.getFirstValue();
+        System.out.println(firstInQueue);
+        */
 }

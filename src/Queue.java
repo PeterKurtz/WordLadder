@@ -60,4 +60,6 @@ public class Queue <E>{
         return head.next.value;
     }
 
+    public E getLastValue() {return tail.value;}
+
 }

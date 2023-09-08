@@ -17,6 +17,8 @@ public class LadderGame {
 
         int lenOfWord = start.length();
 
+        resetRemOrderedWords(lenOfWord);
+
         if (start.length() != end.length()){
             System.out.println("The words are not the same length");
             return;
@@ -27,29 +29,48 @@ public class LadderGame {
             return;
         }
 
-        resetRemOrderedWords(lenOfWord);
-
         Queue wordInfoQueue = new Queue();
         WordInfo startObject = new WordInfo(start, 0);
 
-        //For debugging
-        WordInfo endObject = new WordInfo(end, 0);
-
-        WordInfo testingObject = new WordInfo("Testing", 0);
+        int totalEnqueued = 0;
 
         wordInfoQueue.enqueue(startObject);
-        wordInfoQueue.enqueue(endObject);
-        wordInfoQueue.enqueue(testingObject);
 
         WordInfo firstInQueue = (WordInfo) wordInfoQueue.getFirstValue();
-        System.out.println(firstInQueue);
 
-        wordInfoQueue.dequeue();
+        while (firstInQueue != null) {
+            String word = firstInQueue.getWord();
+            ArrayList<String> oneAwayWords = oneAway(word, true);
 
-        firstInQueue = (WordInfo) wordInfoQueue.getFirstValue();
-        System.out.println(firstInQueue);
+            for (String wordInArray:oneAwayWords) {
+                enqueueWord(wordInArray, wordInfoQueue, firstInQueue);
+                totalEnqueued += 1;
+                if(wordInArray.equals(end)) {
+                    WordInfo endWordInfo = (WordInfo) wordInfoQueue.getLastValue();
+                    System.out.println(start + " -> " + end + " : " + endWordInfo.getMoves() + " Moves [" + endWordInfo.getHistory() + "] total enqueues " + totalEnqueued);
+                    return;
+                }
+            }
+
+            wordInfoQueue.dequeue();
+
+        }
 
     }
+
+    /*private boolean checkIfWinner(String wordInArray, String endWord) {
+        if (wordInArray == endWord) {
+            return true;
+        }
+        else {return false;}
+    }*/
+
+    private void enqueueWord(String word, Queue queueObject, WordInfo wordInfoObject) {
+        WordInfo addWord = new WordInfo(word, wordInfoObject.getMoves() + 1, wordInfoObject.getHistory() + " " + word);
+        queueObject.enqueue(addWord);
+
+    }
+
 
     private boolean diff(String startWord, String dictWord, int lenOfWord) {
         boolean oneAwayBool;
