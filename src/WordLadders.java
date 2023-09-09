@@ -13,6 +13,12 @@ public class WordLadders {
         }
         System.out.println();
 
+        System.out.println("--- Words One Away from 'bfff' ---");
+        for (String word : g.oneAway("bfff", false)) {
+            System.out.println(word);
+        }
+        System.out.println();
+
         System.out.println("--- Word Ladders ---");
         g.play("oops", "tots");
         g.play("ride", "ands");
@@ -22,6 +28,11 @@ public class WordLadders {
         g.play("biff", "axis");
         g.play("fungi", "among");
         g.play("kiss", "woof");
+        g.play("Kiss", "Woof");
+        g.play("*er", "sad");
+        g.play("123", "tar");
+        g.play("a", "i");
+
     }
 }
 
